@@ -23,16 +23,24 @@ var readyForAdventure = function(decision){
 // Boolean Function
 var weaponReady = function(weapon, ready){
     if (ready === "yes"){
-        console.log("I have my " + weapon + " ready for battle!");
+        console.log("He has his " + weapon + " ready to fight some fearsome enemies!");
         return true;
     } else {
-        console.log("I don't have my weapons ready!");
+        console.log("He doesn't have his weapon ready!");
         return false;
     }
 };
 
 // Number Function
-
+var armorReady = function(defensePoints){
+    var armor = defensePoints;
+    while (armor < 20){
+        console.log("His defense is only a " + armor + ", so he must make some modifications to his armor.");
+        armor += 5;
+    }
+    console.log("He is done strengthening his armor!");
+    return armor;
+};
 
 // String Function
 
@@ -41,6 +49,10 @@ var weaponReady = function(weapon, ready){
 
 
 // Main Code
-readyForAdventure(yes);
+readyForAdventure("yes");
 var playerWeapon = weaponReady("sword", "yes");
-console.log("It is " + playerWeapon + " that I am ready for an epic battle!");
+console.log("It is " + playerWeapon + " that he is a fierce warrior!");
+var playerArmor = armorReady(7);
+console.log("Now his defense points are up to " + playerArmor + " and his armor will be able to withstand might blows!");
+
+
