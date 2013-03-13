@@ -52,17 +52,9 @@ var battleStrategy = function(area, adjective){
 var fightEnemies = function(attackPoints, enemiesToAttack){
     var hitPoints = 100;
     for (var i = 0; i < enemiesToAttack.length; i++){ 
-        if (hitPoints > 0){
-            if ((hitPoints + playerArmor) != (100 + playerArmor)){
-                console.log("He was attack by the " + enemiesToAttack[i] + ".");
-            }
-            console.log("He attacked the " + enemiesToAttack[i] + " and did " + attackPoints + " points of damage and defeated him.");
-            hitPoints = hitPoints - ((i * 40) - playerArmor);
-            attackPoints = attackPoints + 15;
-            console.log(playerName + " has " + hitPoints + " points of health left.");
-        } else {
-        return playerName + " needs to go back to the castle and rest. He has no hit pints left!";
-        }
+        console.log("He attacked the " + enemiesToAttack[i] + ".");
+        hitPoints -= (i * 10);
+        console.log(playerName + " has " + hitPoints + " hit points left.");
     }
     return "He defeated all the enemies!";
 };
