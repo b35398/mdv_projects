@@ -22,7 +22,7 @@ var readyForAdventure = function(decision){
 
 // Boolean Function
 var weaponReady = function(weapon, ready){
-    if (ready === "yes"){
+    if (ready === "yes" && weapon === "sword"){
         console.log("He has his " + weapon + " ready to fight some fearsome enemies!");
         return true;
     } else {
@@ -43,16 +43,24 @@ var armorReady = function(defensePoints){
 };
 
 // String Function
-
+var battleStrategy = function(area, adjective){
+    var fight = "He has decided he will go fight enemies in the " + area + " and that he will fight " + adjective + ".";
+    return fight;
+}
 
 // Array Function
 
 
-// Main Code
+// Main Code with Returned Values and their Output
 readyForAdventure("yes");
+
 var playerWeapon = weaponReady("sword", "yes");
 console.log("It is " + playerWeapon + " that he is a fierce warrior!");
+
 var playerArmor = armorReady(7);
 console.log("Now his defense points are up to " + playerArmor + " and his armor will be able to withstand might blows!");
+
+var battleDetails = battleStrategy("dungeon", "aggressively");
+console.log(battleDetails);
 
 
