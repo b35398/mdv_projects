@@ -20,9 +20,16 @@ var readyForAdventure = function(decision){
     }
 };
 
-
 // Boolean Function
-
+var weaponReady = function(weapon, ready){
+    if (ready === "yes"){
+        console.log("I have my " + weapon + " ready for battle!");
+        return true;
+    } else {
+        console.log("I don't have my weapons ready!");
+        return false;
+    }
+};
 
 // Number Function
 
@@ -33,8 +40,7 @@ var readyForAdventure = function(decision){
 // Array Function
 
 
-// Returned Values
-
-
 // Main Code
 readyForAdventure(yes);
+var playerWeapon = weaponReady("sword", "yes");
+console.log("It is " + playerWeapon + " that I am ready for an epic battle!");
