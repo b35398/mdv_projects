@@ -46,10 +46,26 @@ var armorReady = function(defensePoints){
 var battleStrategy = function(area, adjective){
     var fight = "He has decided he will go fight enemies in the " + area + " and that he will fight " + adjective + ".";
     return fight;
-}
+};
 
 // Array Function
-
+var fightEnemies = function(attackPoints, enemiesToAttack){
+    var hitPoints = 100;
+    for (var i = 0; i < enemiesToAttack.length; i++){ 
+        if (hitPoints > 0){
+            if ((hitPoints + playerArmor) != (100 + playerArmor)){
+                console.log("He was attack by the " + enemiesToAttack[i] + ".");
+            }
+            console.log("He attacked the " + enemiesToAttack[i] + " and did " + attackPoints + " points of damage and defeated him.");
+            hitPoints = hitPoints - ((i * 40) - playerArmor);
+            attackPoints = attackPoints + 15;
+            console.log(playerName + " has " + hitPoints + " points of health left.");
+        } else {
+        return playerName + " needs to go back to the castle and rest. He has no hit pints left!";
+        }
+    }
+    return "He defeated all the enemies!";
+};
 
 // Main Code with Returned Values and their Output
 readyForAdventure("yes");
@@ -58,9 +74,14 @@ var playerWeapon = weaponReady("sword", "yes");
 console.log("It is " + playerWeapon + " that he is a fierce warrior!");
 
 var playerArmor = armorReady(7);
-console.log("Now his defense points are up to " + playerArmor + " and his armor will be able to withstand might blows!");
+console.log("Now his defense points are up to " + playerArmor + " and his armor will be able to withstand mighty blows!");
 
 var battleDetails = battleStrategy("dungeon", "aggressively");
 console.log(battleDetails);
+
+var battle = fightEnemies(damageOutput, enemies);
+console.log(battle);
+
+
 
 
