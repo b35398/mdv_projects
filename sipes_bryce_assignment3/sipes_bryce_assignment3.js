@@ -31,6 +31,14 @@ var listWeapons = function(weaponArray){
     }
 };
 
+var joinGroup = function(namesArray){
+    var newGroup = {
+        names   : namesArray,
+        healthy : true,
+    }
+    return newGroup;
+};
+
 // Objects
 
 var playerOne = {
@@ -144,6 +152,12 @@ playerOne.assessThreat(zombieGroup.isThreat());
 var numOfZombiesKilled = playerOne.attackZombies(zombieGroup);
 
 console.log("We killed " + numOfZombiesKilled + " zombies. This group really has their stuff together, I should join them.");
+
+var improvedGroup = joinGroup(["Mark", "Julie", "Rupert", "Chris", "Alex"]);
+
+console.log("Now the new group is: " + improvedGroup.names + ".");
+
+console.log("This place isn't safe, anymore. We better get out of here.");
 
 
 
