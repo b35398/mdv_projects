@@ -37,9 +37,16 @@ var playerOne = {
     name        : "Mark",
     weaponArmed : "fists",
     injuries    : false,
-    getWeapon   : function(weapon){     // Method: Mutator
+    getWeapon   : function(weapon){
         this.weaponArmed = weapon;
         return this.weaponArmed;
+    },
+    assessThreat : function(threat){
+        if (threat === true){
+            console.log("Get ready, these are going to be some tough zombies to take down!");
+        } else {
+            console.log("These zombies shouldn't be too hard to take down.");
+        }
     }
 };
 
@@ -53,6 +60,25 @@ var group = {
             this.groupSize++;
         }
         return this.names;
+    }
+};
+
+var zombieGroup = {
+    zombies      : 5,
+    daysDeceased : 39,
+    isThreat  : function(){
+        if (this.zombies > 3){
+            if (this.daysDeceased < 60){
+                this.isThreat = true;
+                return this.isThreat;
+            } else {
+                this.isThreat = false;
+                return this.isThreat;
+            }
+        } else {
+            this.isThreat = false;
+            return this.isThreat;
+        }
     }
 };
 
@@ -97,11 +123,13 @@ console.log("I'll choose the " + myWeapon + ", because it's silent and doesn't r
 
 console.log(playerOne.name + " makes his way further into the " + areaMaP + " when he hears something. He overhears some whispering and realizes it's other humans. He calls out and asks who's there.");
 
-group.rollCall(json.survivors);
+var survivorNames = group.rollCall(json.survivors);
 
-console.log("Glad to see there are other survivors out here. Nice to meet you all. " + group.names[0] + ", " + group.names[1] + ", " + group.names[2] + ", " + group.names[3] + ". I'll try and remember those.");
+console.log("Glad to see there are other survivors out here. Nice to meet you all. " + survivorNames[0] + ", " + survivorNames[1] + ", " + survivorNames[2] + ", " + survivorNames[3] + ". I'll try and remember those.");
 
+console.log(playerOne.name + " heard some more noise during the introductions. He asked if there was anyone else and the group replied, \"no.\" It must be....ZOMBIES!");
 
+var zombieThreat = playerOne.assessThreat(zombieGroup.isThreat());
 
 
 
