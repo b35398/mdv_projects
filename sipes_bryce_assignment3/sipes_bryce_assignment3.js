@@ -37,9 +37,22 @@ var playerOne = {
     name        : "Mark",
     weaponArmed : "fists",
     injuries    : false,
-    getWeapon   : function(weapon){
+    getWeapon   : function(weapon){     // Method: Mutator
         this.weaponArmed = weapon;
         return this.weaponArmed;
+    }
+};
+
+var group = {
+    groupSize : 0,
+    names     : [],
+    rollCall  : function(jsonLength){
+        while (this.groupSize !== jsonLength.length){
+            this.names.push(jsonLength[this.groupSize].name);
+            console.log("Hi, my name is " + jsonLength[this.groupSize].name + ".");
+            this.groupSize++;
+        }
+        return this.names;
     }
 };
 
@@ -77,6 +90,16 @@ console.log(playerOne.name + " quietly makes his way inside the " + areaMaP + " 
 listWeapons(weapons);
 
 console.log("Which one should I choose?");
+
+var myWeapon = playerOne.getWeapon("crowbar");
+
+console.log("I'll choose the " + myWeapon + ", because it's silent and doesn't require ammo.");
+
+console.log(playerOne.name + " makes his way further into the " + areaMaP + " when he hears something. He overhears some whispering and realizes it's other humans. He calls out and asks who's there.");
+
+group.rollCall(json.survivors);
+
+console.log("Glad to see there are other survivors out here. Nice to meet you all. " + group.names[0] + ", " + group.names[1] + ", " + group.names[2] + ", " + group.names[3] + ". I'll try and remember those.");
 
 
 
