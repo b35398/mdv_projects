@@ -36,7 +36,6 @@ var listWeapons = function(weaponArray){
 var playerOne = {
     name        : "Mark",
     weaponArmed : "fists",
-    injuries    : false,
     getWeapon   : function(weapon){
         this.weaponArmed = weapon;
         return this.weaponArmed;
@@ -47,6 +46,17 @@ var playerOne = {
         } else {
             console.log("These zombies shouldn't be too hard to take down.");
         }
+    },
+    attackZombies : function(zombiesToFight){
+        var zombiesLeft = zombiesToFight.zombies;
+        var zombiesKilled= 0
+        while (zombiesKilled != zombiesLeft){
+            zombiesKilled++
+            for (var key in json.survivors){
+                zombiesKilled++
+            }
+        }
+        return zombiesKilled;
     }
 };
 
@@ -129,7 +139,13 @@ console.log("Glad to see there are other survivors out here. Nice to meet you al
 
 console.log(playerOne.name + " heard some more noise during the introductions. He asked if there was anyone else and the group replied, \"no.\" It must be....ZOMBIES!");
 
-var zombieThreat = playerOne.assessThreat(zombieGroup.isThreat());
+playerOne.assessThreat(zombieGroup.isThreat());
+
+var numOfZombiesKilled = playerOne.attackZombies(zombieGroup);
+
+console.log("We killed " + numOfZombiesKilled + " zombies. This group really has their stuff together, I should join them.");
+
+
 
 
 
