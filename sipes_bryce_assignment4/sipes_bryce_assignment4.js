@@ -15,6 +15,9 @@ var keyArray     = [{b:3},{b:1},{b:5},{b:4},{b:2}];
 var nextKeyArray = [{a:3},{a:1},{a:5},{a:4},{a:2}];
 var someUrl      = "https://www.someurl.com";
 var anotherUrl   = "www.anotherurl.com";
+var myEmailAdd   = "example@example.com";
+var badEmail     = "a.something@com";
+var sillyEmail   = "example@.com";
 
 
 // Code Library
@@ -42,13 +45,16 @@ var codeLibrary = function(){
         return isCorrect;
     } // End of isPhoneNumber method
     
-    var isEmail = function(email){ // Checks if a string is an email patter 
+    var isEmail = function(email){ // Checks if a string is an email pattern 
         var emailStr = email;
-        var checkEmail;
-        
+        var checkEmail = false;
+        if (emailStr.indexOf("@") > 1 && emailStr.lastIndexOf(".") > (emailStr.indexOf("@") + 1)){
+            checkEmail = true;
+        }
+        return checkEmail;
     } // End of is Email method
     
-    var isUrl = function(url){ // checks if a string starts with http:// or https://
+    var isUrl = function(url){ // Checks if a string starts with http:// or https://
         myUrl = url;
         urlCorrect = false;
         if (myUrl.startsWith("http://") === true || myUrl.startsWith("https://") === true){
@@ -57,12 +63,42 @@ var codeLibrary = function(){
         return urlCorrect;
     } // End of isUrl method
     
+    var titleCase = function(string){ // Title cases a string and returns it
+        
+    }
+    
+    var changeSeperator = function(string, seperator, replace){ // Replaces seperators in a string
+        
+    }
+    
     // NUMBER METHODS
     
-    var formatNum = function(number, numAfterDec){ // formats a number to a specific length after decimal
+    var formatNum = function(number, numAfterDec){ // Formats a number to a specific length after decimal
         var num = number;
         return num.toFixed(numAfterDec);
     } //End of formatNum method
+    
+    var fuzzyNum = function(firstNum, secondNum, percent){ // Finds if a number is within a certain percent of another number
+        var firstNumber  = firstNum;
+        var secondNumber = secondNum;
+        var myPercent    = percent;
+        var toPercent    = percent/100;
+        var myResult;
+        if (firstNumber < secondNumber){
+            if (firstNumber >= (secondNumber*toPercent)){
+                myResult = firstNumber + " is within " + myPercent + " percent of " +  secondNumber + ".";
+            } else {
+                myResult = firstNumber + " is not within " + myPercent + " percent of " +  secondNumber + ".";
+            }
+        } else{
+            if (secondNumber >= (firstNumber*toPercent)){
+                myResult = secondNumber + " is within " + myPercent + " percent of " +  firstNumber + ".";
+            } else {
+                myResult = secondNumber + " is not within " + myPercent + " percent of " +  firstNumber + ".";
+            }
+        }
+        return myResult;
+    }
     
     var strToNum = function(stringNum){  // Turns a string number into a number
         var myStringNum = parseFloat(stringNum);
@@ -74,7 +110,7 @@ var codeLibrary = function(){
         }
     } // End of strToNum method
     
-    var compareDates = function(firstDate, secondDate, time){ // Finds the difference between 2 dats be either days or hours
+    var compareDates = function(firstDate, secondDate, time){ // Finds the difference between 2 dates by either days or hours
         var firstDay   = firstDate;
         var secondDay  = secondDate;
         var timeChoice = time;
@@ -130,15 +166,18 @@ var codeLibrary = function(){
     } // End of arraySort method
     
     return {
-        "isPhoneNum"   : isPhoneNum,
-        "isEmail"      : isEmail,
-        "isUrl"        : isUrl,
-        "formatNum"    : formatNum,
-        "compareDates" : compareDates,
-        "strToNum"     : strToNum,
-        "valGreatThan" : valGreatThan,
-        "totalValue"   : totalValue,
-        "arraySort"    : arraySort
+        "isPhoneNum"      : isPhoneNum,
+        "isEmail"         : isEmail,
+        "isUrl"           : isUrl,
+        "titleCase"       : titleCase,
+        "changeSeperator" : changeSeperator,
+        "formatNum"       : formatNum,
+        "fuzzyNum"        : fuzzyNum,
+        "compareDates"    : compareDates,
+        "strToNum"        : strToNum,
+        "valGreatThan"    : valGreatThan,
+        "totalValue"      : totalValue,
+        "arraySort"       : arraySort
     }
 };
 
@@ -154,6 +193,13 @@ var checkPhoneNumber = codeLib.isPhoneNum("555-5t5-5555"); // false
 console.log(checkPhoneNumber);
 
 // check isEmail method
+var isEmailValid = codeLib.isEmail(myEmailAdd); // true
+console.log(isEmailValid);
+var isEmailValid = codeLib.isEmail(badEmail); // false
+console.log(isEmailValid);
+var isEmailValid = codeLib.isEmail(sillyEmail); // false
+console.log(isEmailValid);
+
 
 // check isUrl method
 var checkUrl = codeLib.isUrl(someUrl); // true
@@ -173,7 +219,11 @@ console.log(myCash);
 var someNumber = codeLib.formatNum(1.1, 2); // 1.10
 console.log(someNumber);
 
-//check
+//check fuzzyNum method
+var checkFuzzy = codeLib.fuzzyNum(91,100,90); // 91 is within 90 percent of 100.
+console.log(checkFuzzy);
+var checkMoreFuzz = codeLib.fuzzyNum(30,12,30); // 12 is within 30 percent of 30.
+console.log(checkMoreFuzz);
 
 // check compareDates method
 var daysDifference = codeLib.compareDates(new Date(2013,3,20),new Date(2013,3,27),"days"); // 7
