@@ -59,6 +59,11 @@ var codeLibrary = function(){
     
     // NUMBER METHODS
     
+    var formatNum = function(number, numAfterDec){ // formats a number to a specific length after decimal
+        var num = number;
+        return num.toFixed(numAfterDec);
+    } //End of formatNum method
+    
     var strToNum = function(stringNum){  // Turns a string number into a number
         var myStringNum = parseFloat(stringNum);
         var notANum = "That is not a number.";
@@ -128,6 +133,7 @@ var codeLibrary = function(){
         "isPhoneNum"   : isPhoneNum,
         "isEmail"      : isEmail,
         "isUrl"        : isUrl,
+        "formatNum"    : formatNum,
         "compareDates" : compareDates,
         "strToNum"     : strToNum,
         "valGreatThan" : valGreatThan,
@@ -155,7 +161,19 @@ console.log(checkUrl);
 var checkUrl = codeLib.isUrl(anotherUrl); // false
 console.log(checkUrl);
 
+// check
+
+// check
+
 // NUMBER METHODS
+
+// check formatNum method
+var myCash = codeLib.formatNum(10000.50000000, 2); //10000.50
+console.log(myCash);
+var someNumber = codeLib.formatNum(1.1, 2); // 1.10
+console.log(someNumber);
+
+//check
 
 // check compareDates method
 var daysDifference = codeLib.compareDates(new Date(2013,3,20),new Date(2013,3,27),"days"); // 7
