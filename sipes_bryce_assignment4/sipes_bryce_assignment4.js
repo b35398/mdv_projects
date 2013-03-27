@@ -57,6 +57,8 @@ var codeLibrary = function(){
         return urlCorrect;
     } // End of isUrl method
     
+    // NUMBER METHODS
+    
     var strToNum = function(stringNum){  // Turns a string number into a number
         var myStringNum = parseFloat(stringNum);
         var notANum = "That is not a number.";
@@ -67,7 +69,27 @@ var codeLibrary = function(){
         }
     } // End of strToNum method
     
-    // NUMBER METHODS
+    var compareDates = function(firstDate, secondDate, time){ // Finds the difference between 2 dats be either days or hours
+        var firstDay   = firstDate;
+        var secondDay  = secondDate;
+        var timeChoice = time;
+        var difference;
+        if (timeChoice == "hours"){
+            if(firstDay > secondDay){
+                difference = (firstday - secondDay) / 3600000;
+            } else {
+                difference = (secondDay - firstDay) / 3600000;
+            }
+        }
+        if (timeChoice == "days"){
+            if(firstDay > secondDay){
+                difference = (firstday - secondDay) / 86400000;
+            } else {
+                difference = (secondDay - firstDay) / 86400000;
+            }
+        }
+        return difference;
+    } // End of compareDates method
     
     // ARRAY METHODS
     
@@ -106,12 +128,13 @@ var codeLibrary = function(){
         "isPhoneNum"   : isPhoneNum,
         "isEmail"      : isEmail,
         "isUrl"        : isUrl,
+        "compareDates" : compareDates,
         "strToNum"     : strToNum,
         "valGreatThan" : valGreatThan,
         "totalValue"   : totalValue,
         "arraySort"    : arraySort
     }
-}
+};
 
 // Main Code
 var codeLib = new codeLibrary();
@@ -132,17 +155,19 @@ console.log(checkUrl);
 var checkUrl = codeLib.isUrl(anotherUrl); // false
 console.log(checkUrl);
 
+// NUMBER METHODS
+
+// check compareDates method
+var daysDifference = codeLib.compareDates(new Date(2013,3,20),new Date(2013,3,27),"days"); // 7
+console.log(daysDifference);
+var hoursDifference = codeLib.compareDates(new Date(2013,3,26),new Date(2013,3,30),"hours"); // 96
+console.log(hoursDifference);
 
 // check stringToNum method
 var stringNumber = codeLib.strToNum("22"); // 22
 console.log(stringNumber);
 var stringNumber = codeLib.strToNum("dog"); // That is not a number.
 console.log(stringNumber);
-
-
-// NUMBER METHODS
-
-
 
 // ARRAY METHODS
 
