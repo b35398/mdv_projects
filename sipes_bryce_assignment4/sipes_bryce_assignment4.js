@@ -55,8 +55,8 @@ var codeLibrary = function(){
     } // End of is Email method
     
     var isUrl = function(url){ // Checks if a string starts with http:// or https://
-        myUrl = url;
-        urlCorrect = false;
+        var myUrl = url;
+        var urlCorrect = false;
         if (myUrl.startsWith("http://") === true || myUrl.startsWith("https://") === true){
             urlCorrect = true;
         }
@@ -64,7 +64,20 @@ var codeLibrary = function(){
     } // End of isUrl method
     
     var titleCase = function(string){ // Title cases a string and returns it
-        
+         var myString         = string;
+         var splitString      = myString.split("");
+         var stringSpace      = " ";
+         var titleCasedString = "";
+         for (var i = 0; i < splitString.length; i++){
+            if (splitString[i-1] === stringSpace || splitString[i-1] === undefined){
+                splitString[i] = splitString[i].toUpperCase();
+                titleCasedString += splitString[i];
+            } else {
+                splitString[i] = splitString[i].toLowerCase();
+                titleCasedString += splitString[i];
+            }
+         }
+         return titleCasedString;
     }
     
     var changeSeperator = function(string, seperator, replace){ // Replaces seperators in a string
@@ -207,14 +220,18 @@ console.log(checkUrl);
 var checkUrl = codeLib.isUrl(anotherUrl); // false
 console.log(checkUrl);
 
-// check
+// check titleCase method
+var titleCaseMe = codeLib.titleCase("i am title cased"); // I Am Title Cased
+console.log(titleCaseMe);
+var titleCaseMe = codeLib.titleCase("i aM tITLE cASED, tOO"); // I Am Title Cased, Too 
+console.log(titleCaseMe);
 
 // check
 
 // NUMBER METHODS
 
 // check formatNum method
-var myCash = codeLib.formatNum(10000.50000000, 2); //10000.50
+var myCash = codeLib.formatNum(10000.50000000, 2); // 10000.50
 console.log(myCash);
 var someNumber = codeLib.formatNum(1.1, 2); // 1.10
 console.log(someNumber);
