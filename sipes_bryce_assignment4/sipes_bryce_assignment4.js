@@ -47,6 +47,21 @@ var codeLibrary = function(){
         
     } // End of isUrl function
     
+    
+    // ARRAY FUNCTIONS
+    
+    var valGreatThan = function(array, number){
+        var myArray = array.sort(function(a, b) {return a - b});
+        var myNum = number;
+        var nextNum;
+        for (var i = 0; i < myArray.length; i++){
+            if (myNum > myArray[i] && myNum < myArray[i+1]){
+                nextNum = myArray[i+1];
+            }
+        }
+        return nextNum;
+    }
+    
     var totalValue = function(array){ // Finds the total value of numbers in an array
         var myArray = array;
         var myTotal = 0;
@@ -58,7 +73,7 @@ var codeLibrary = function(){
         return myTotal;
     } // End of totalValue function
     
-    var arraySort = function(array, key){
+    var arraySort = function(array, key){ // Sorts an array by a key value
         var myArray = array.sort(function(a, b) {
             var x = a[key]; var y = b[key];
             return ((x < y) ? -1 : ((x > y) ? 1 : 0));
@@ -67,12 +82,13 @@ var codeLibrary = function(){
     } // End of arraySort function
     
     return {
-        "isPhoneNum"  : isPhoneNum,
-        "isEmail"     : isEmail,
-        "isUrl"       : isUrl,
-        "strToNum"    : strToNum,
-        "totalValue"  : totalValue,
-        "arraySort"   : arraySort
+        "isPhoneNum"   : isPhoneNum,
+        "isEmail"      : isEmail,
+        "isUrl"        : isUrl,
+        "strToNum"     : strToNum,
+        "valGreatThan" : valGreatThan,
+        "totalValue"   : totalValue,
+        "arraySort"    : arraySort
       
     }
 }
@@ -96,6 +112,16 @@ var stringNumber = codeLib.strToNum("22"); // 22
 console.log(stringNumber);
 var stringNumber = codeLib.strToNum("dog"); // That is not a number.
 console.log(stringNumber);
+
+// ARRAY FUNCTIONS
+
+// check valGreatThan function
+var anotArray = [1,2,3,5,7,10,9];
+var nextGreatest = codeLib.valGreatThan(anotArray, 4); // 5
+console.log(nextGreatest);
+var anotArray = [1,2,3,5,7,10,9,28];
+var nextGreatest = codeLib.valGreatThan(anotArray, 20); // 28
+console.log(nextGreatest);
 
 // check totalValue function
 var crazyArray = [1, "10", false, "cat", 2, 3, "dog", true, 10, "John", false, "11"];
