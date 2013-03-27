@@ -5,7 +5,22 @@
 // Project 4
 // Code Library
 
+// MAKEUP: code follows logic of flowchart, Project 1
+
+// Global Variables
+var anotherArray = [1,2,3,5,7,10,9];  // MAKEUP: variables defined in the way required by the flowchart, Project 1
+var anotArray    = [1,2,3,5,7,10,9,28];
+var crazyArray   = [1, "10", false, "cat", 2, 3, "dog", true, 10, "John", false, "11"];
+var keyArray     = [{b:3},{b:1},{b:5},{b:4},{b:2}];
+var nextKeyArray = [{a:3},{a:1},{a:5},{a:4},{a:2}];
+var someUrl      = "https://www.someurl.com";
+var anotherUrl   = "www.anotherurl.com";
+
+
+// Code Library
 var codeLibrary = function(){
+    // STRING METHODS
+    
     var isPhoneNum = function(phoneNumber){ // Checks if string is a phone number pattern
         var phoneNumberString = phoneNumber;
         var phoneNumberArray = [];
@@ -25,42 +40,48 @@ var codeLibrary = function(){
             isCorrect = false;
         }
         return isCorrect;
-    } // End of isPhoneNumber function
+    } // End of isPhoneNumber method
     
     var isEmail = function(email){ // Checks if a string is an email patter 
         var emailStr = email;
         var checkEmail;
         
-    } // End of is Email function
+    } // End of is Email method
+    
+    var isUrl = function(url){ // checks if a string starts with http:// or https://
+        myUrl = url;
+        urlCorrect = false;
+        if (myUrl.startsWith("http://") === true || myUrl.startsWith("https://") === true){
+            urlCorrect = true;
+        }
+        return urlCorrect;
+    } // End of isUrl method
     
     var strToNum = function(stringNum){  // Turns a string number into a number
         var myStringNum = parseFloat(stringNum);
-        var notANum = "That is not a number";
+        var notANum = "That is not a number.";
         if (!isNaN(myStringNum)){
             return myStringNum;
         } else {
             return notANum;
         }
-    } // End of strToNum function
+    } // End of strToNum method
     
-    var isUrl = function(){
-        
-    } // End of isUrl function
+    // NUMBER METHODS
     
+    // ARRAY METHODS
     
-    // ARRAY FUNCTIONS
-    
-    var valGreatThan = function(array, number){
-        var myArray = array.sort(function(a, b) {return a - b});
+    var valGreatThan = function(array, number){ // Finds the next largest number in an array based on the number given
+        var myArray = array.sort(function(a, b) {return a - b}); // MAKEUP: needed to use an array method, Project 2
         var myNum = number;
         var nextNum;
-        for (var i = 0; i < myArray.length; i++){
+        for (var i = 0; i < myArray.length; i++){ // MAKEUP: for loop in flowchart shows logical flow, Project 3
             if (myNum > myArray[i] && myNum < myArray[i+1]){
                 nextNum = myArray[i+1];
             }
         }
         return nextNum;
-    }
+    } // End of valGreatThan method
     
     var totalValue = function(array){ // Finds the total value of numbers in an array
         var myArray = array;
@@ -71,15 +92,15 @@ var codeLibrary = function(){
             }
         }
         return myTotal;
-    } // End of totalValue function
+    } // End of totalValue method
     
     var arraySort = function(array, key){ // Sorts an array by a key value
         var myArray = array.sort(function(a, b) {
             var x = a[key]; var y = b[key];
             return ((x < y) ? -1 : ((x > y) ? 1 : 0));
         });
-        return myArray;
-    } // End of arraySort function
+        return myArray; // MAKEUP: return array, Project 2
+    } // End of arraySort method
     
     return {
         "isPhoneNum"   : isPhoneNum,
@@ -89,49 +110,54 @@ var codeLibrary = function(){
         "valGreatThan" : valGreatThan,
         "totalValue"   : totalValue,
         "arraySort"    : arraySort
-      
     }
 }
 
 // Main Code
 var codeLib = new codeLibrary();
 
-// check isPhoneNum function
+// STRING METHODS
+
+// check isPhoneNum method
 var checkPhoneNumber = codeLib.isPhoneNum("555-555-5555");  // true
 console.log(checkPhoneNumber);
 var checkPhoneNumber = codeLib.isPhoneNum("555-5t5-5555"); // false
 console.log(checkPhoneNumber);
 
-// check isEmail function
+// check isEmail method
 
-// check isUrl function
+// check isUrl method
+var checkUrl = codeLib.isUrl(someUrl); // true
+console.log(checkUrl);
+var checkUrl = codeLib.isUrl(anotherUrl); // false
+console.log(checkUrl);
 
 
-// check stringToNum function
+// check stringToNum method
 var stringNumber = codeLib.strToNum("22"); // 22
 console.log(stringNumber);
 var stringNumber = codeLib.strToNum("dog"); // That is not a number.
 console.log(stringNumber);
 
-// ARRAY FUNCTIONS
 
-// check valGreatThan function
-var anotArray = [1,2,3,5,7,10,9];
-var nextGreatest = codeLib.valGreatThan(anotArray, 4); // 5
+// NUMBER METHODS
+
+
+
+// ARRAY METHODS
+
+// check valGreatThan method
+var nextGreatest = codeLib.valGreatThan(anotherArray, 4); // 5
 console.log(nextGreatest);
-var anotArray = [1,2,3,5,7,10,9,28];
 var nextGreatest = codeLib.valGreatThan(anotArray, 20); // 28
 console.log(nextGreatest);
 
-// check totalValue function
-var crazyArray = [1, "10", false, "cat", 2, 3, "dog", true, 10, "John", false, "11"];
+// check totalValue method
 var totalVal = codeLib.totalValue(crazyArray); // 16
 console.log(totalVal); 
 
-// check arraySort function
-var keyArray = [{b:3},{b:1},{b:5},{b:4},{b:2}];
+// check arraySort method
 var sortedArray = codeLib.arraySort(keyArray,"b");  // b:1, b:2, b:3, b:4, b:5,
 console.log(sortedArray);
-var keyArray = [{a:3},{a:1},{a:5},{a:4},{a:2}];
-var sortedArray = codeLib.arraySort(keyArray,"a");  // a:1, a:2, a:3, a:4, a:5,
+var sortedArray = codeLib.arraySort(nextKeyArray,"a");  // a:1, a:2, a:3, a:4, a:5,
 console.log(sortedArray);
