@@ -78,10 +78,14 @@ var codeLibrary = function(){
             }
          }
          return titleCasedString;
-    }
+    } // End of titleCase method
     
     var changeSeperator = function(string, seperator, replace){ // Replaces seperators in a string
-        
+        var myString = string;
+        do {
+            myString = myString.replace(seperator, replace)
+        } while (myString.indexOf(seperator) !== -1);
+        return myString;
     }
     
     // NUMBER METHODS
@@ -171,11 +175,9 @@ var codeLibrary = function(){
     } // End of totalValue method
     
     var arraySort = function(array, key){ // Sorts an array by a key value
-        var myArray = array.sort(function(a, b) {
-            var x = a[key]; var y = b[key];
-            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-        });
-        return myArray; // MAKEUP: return array, Project 2
+        var myKey   = key;
+        var compare = function(){};
+        
     } // End of arraySort method
     
     return {
@@ -192,7 +194,7 @@ var codeLibrary = function(){
         "totalValue"      : totalValue,
         "arraySort"       : arraySort
     }
-};
+}
 
 // Main Code
 var codeLib = new codeLibrary();
@@ -226,7 +228,11 @@ console.log(titleCaseMe);
 var titleCaseMe = codeLib.titleCase("i aM tITLE cASED, tOO"); // I Am Title Cased, Too 
 console.log(titleCaseMe);
 
-// check
+// check changeSeperator method
+var changeStringSep = codeLib.changeSeperator("a,b,c,d,e",",","/");
+console.log(changeStringSep);
+var changeStringSep = codeLib.changeSeperator("1/2/3/4/5","/",",");
+console.log(changeStringSep);
 
 // NUMBER METHODS
 
@@ -267,7 +273,17 @@ var totalVal = codeLib.totalValue(crazyArray); // 16
 console.log(totalVal); 
 
 // check arraySort method
-var sortedArray = codeLib.arraySort(keyArray,"b");  // b:1, b:2, b:3, b:4, b:5,
+var sortedArray = codeLib.arraySort(keyArray,"b");  // b:1, b:2, b:3, b:4, b:5, a:1, c:2
 console.log(sortedArray);
-var sortedArray = codeLib.arraySort(nextKeyArray,"a");  // a:1, a:2, a:3, a:4, a:5,
+var sortedArray = codeLib.arraySort(nextKeyArray,"a");  // a:1, a:2, a:3, a:4, a:5, b:1, b:2
 console.log(sortedArray);
+
+
+
+
+
+
+
+//array.sort(function(a, b) {
+  //          var x = a[key]; var y = b[key];
+    //        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
