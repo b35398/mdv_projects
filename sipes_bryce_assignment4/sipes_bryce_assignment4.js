@@ -11,8 +11,7 @@
 var anotherArray = [1,2,3,5,7,10,9];  // MAKEUP: variables defined in the way required by the flowchart, Project 1
 var anotArray    = [1,2,3,5,7,10,9,28];
 var crazyArray   = [1, "10", false, "cat", 2, 3, "dog", true, 10, "John", false, "11"];
-var keyArray     = [{b:3},{b:1},{b:5},{b:4},{b:2}];
-var nextKeyArray = [{a:3},{a:1},{a:5},{a:4},{a:2}];
+var keyArray     = [{b:3},{b:1},{c:7},{b:5},{b:4},{b:2},{a:1},{c:2}];
 var someUrl      = "https://www.someurl.com";
 var anotherUrl   = "www.anotherurl.com";
 var myEmailAdd   = "example@example.com";
@@ -29,7 +28,7 @@ var codeLibrary = function(){
         var phoneNumberArray = [];
         var isCorrect = true;
         if (phoneNumberString.length === 12){
-            for (var i = 0; i < 12; i++){
+            for (var i = 0; i < 12; i++){ // MAKEUP: for loop in flowchart shows logical flow, Project 3
                 phoneNumberArray.push(phoneNumberString.charAt(i));
                 if (isNaN(parseInt(phoneNumberArray[i])) !== true){ // MAKEUP: ! comparison operator, project 2
                     continue;
@@ -80,13 +79,13 @@ var codeLibrary = function(){
          return titleCasedString;
     } // End of titleCase method
     
-    var changeSeperator = function(string, seperator, replace){ // Replaces seperators in a string
+    var changeSeparator = function(string, separator, replace){ // Replaces separators in a string
         var myString = string;
         do {
-            myString = myString.replace(seperator, replace)
-        } while (myString.indexOf(seperator) !== -1);
+            myString = myString.replace(separator, replace)
+        } while (myString.indexOf(separator) !== -1);
         return myString;
-    }
+    } // End of changeSeparator method
     
     // NUMBER METHODS
     
@@ -117,16 +116,6 @@ var codeLibrary = function(){
         return myResult;
     }
     
-    var strToNum = function(stringNum){  // Turns a string number into a number
-        var myStringNum = parseFloat(stringNum);
-        var notANum = "That is not a number.";
-        if (!isNaN(myStringNum)){
-            return myStringNum;
-        } else {
-            return notANum;
-        }
-    } // End of strToNum method
-    
     var compareDates = function(firstDate, secondDate, time){ // Finds the difference between 2 dates by either days or hours
         var firstDay   = firstDate;
         var secondDay  = secondDate;
@@ -138,8 +127,7 @@ var codeLibrary = function(){
             } else {
                 difference = (secondDay - firstDay) / 3600000;
             }
-        }
-        if (timeChoice == "days"){
+        } else {
             if(firstDay > secondDay){
                 difference = (firstday - secondDay) / 86400000;
             } else {
@@ -149,13 +137,23 @@ var codeLibrary = function(){
         return difference;
     } // End of compareDates method
     
+    var strToNum = function(stringNum){  // Turns a string number into a number
+        var myStringNum = parseFloat(stringNum);
+        var notANum = "That is not a number.";
+        if (!isNaN(myStringNum)){
+            return myStringNum;
+        } else {
+            return notANum;
+        }
+    } // End of strToNum method
+    
     // ARRAY METHODS
     
     var valGreatThan = function(array, number){ // Finds the next largest number in an array based on the number given
         var myArray = array.sort(function(a, b) {return a - b}); // MAKEUP: needed to use an array method, Project 2
         var myNum = number;
         var nextNum;
-        for (var i = 0; i < myArray.length; i++){ // MAKEUP: for loop in flowchart shows logical flow, Project 3
+        for (var i = 0; i < myArray.length; i++){
             if (myNum > myArray[i] && myNum < myArray[i+1]){
                 nextNum = myArray[i+1];
             }
@@ -175,9 +173,31 @@ var codeLibrary = function(){
     } // End of totalValue method
     
     var arraySort = function(array, key){ // Sorts an array by a key value
-        var myKey   = key;
-        var compare = function(){};
-        
+        var myArray     = array;
+        var myKey       = key;
+        var firstArray  = [];
+        var secondArray = [];
+        var tempVar;
+        var sortedArray;
+        var finalArray;
+        var arraySort = function(array, key){
+            var tempArray = array.sort(function(a,b){
+                var x = a[key]; var y = b[key];
+                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            })
+            return tempArray
+        }
+        for (var i = 1; i < myArray.length; i++){
+            tempVar = myArray[i];
+            if (tempVar[myKey] !== undefined){
+                firstArray.push(tempVar);
+            } else {
+                secondArray.push(tempVar);
+            }
+        }
+        sortedArray = arraySort(firstArray, myKey);
+        finalArray = sortedArray.concat(secondArray);
+        return finalArray;
     } // End of arraySort method
     
     return {
@@ -185,7 +205,7 @@ var codeLibrary = function(){
         "isEmail"         : isEmail,
         "isUrl"           : isUrl,
         "titleCase"       : titleCase,
-        "changeSeperator" : changeSeperator,
+        "changeSeparator" : changeSeparator,
         "formatNum"       : formatNum,
         "fuzzyNum"        : fuzzyNum,
         "compareDates"    : compareDates,
@@ -215,7 +235,6 @@ console.log(isEmailValid);
 var isEmailValid = codeLib.isEmail(sillyEmail); // false
 console.log(isEmailValid);
 
-
 // check isUrl method
 var checkUrl = codeLib.isUrl(someUrl); // true
 console.log(checkUrl);
@@ -228,10 +247,10 @@ console.log(titleCaseMe);
 var titleCaseMe = codeLib.titleCase("i aM tITLE cASED, tOO"); // I Am Title Cased, Too 
 console.log(titleCaseMe);
 
-// check changeSeperator method
-var changeStringSep = codeLib.changeSeperator("a,b,c,d,e",",","/");
+// check changeSeparator method
+var changeStringSep = codeLib.changeSeparator("a,b,c,d,e",",","/"); // a/b/c/d/e
 console.log(changeStringSep);
-var changeStringSep = codeLib.changeSeperator("1/2/3/4/5","/",",");
+var changeStringSep = codeLib.changeSeparator("1/2/3/4/5","/",","); // 1,2,3,4,5
 console.log(changeStringSep);
 
 // NUMBER METHODS
@@ -273,17 +292,6 @@ var totalVal = codeLib.totalValue(crazyArray); // 16
 console.log(totalVal); 
 
 // check arraySort method
-var sortedArray = codeLib.arraySort(keyArray,"b");  // b:1, b:2, b:3, b:4, b:5, a:1, c:2
-console.log(sortedArray);
-var sortedArray = codeLib.arraySort(nextKeyArray,"a");  // a:1, a:2, a:3, a:4, a:5, b:1, b:2
-console.log(sortedArray);
+var myAssortedArray = codeLib.arraySort(keyArray,"b");
+console.log(myAssortedArray);
 
-
-
-
-
-
-
-//array.sort(function(a, b) {
-  //          var x = a[key]; var y = b[key];
-    //        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
