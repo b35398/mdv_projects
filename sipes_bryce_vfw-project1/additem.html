@@ -17,23 +17,64 @@
     <form action="#" method="post">
         <fieldset>
             <legend><h2>Note</h2></legend>
-            <label for="class">Class:</label>
-            <select id="class">
-                <option>Math</option>
-                <option>Science</option>
-                <option>English</option>
-                <option>History</option>
-                <option>Art</option>
-                <option>Music</option>
-            </select>
+            <div>
+                <label for="date">Date:<label/>
+                <input type="date" name="date"/>
+            </div>
+            <br/>
+            <div>
+                <label for="class">Class:</label>
+                <select id="class">
+                    <option>Math</option>
+                    <option>Science</option>
+                    <option>English</option>
+                    <option>History</option>
+                    <option>Art</option>
+                    <option>Music</option>
+                </select>
+            </div>
+            <br/>
+            <label for="teacher">Teacher:</label><input type="text id="teacher"/>
             <br/>
             <br/>
-            <label for="teacher">Teacher:</label><input type="text" id="teacher"/>
+            <div>
+                <label for="test">Will this be on a test or quiz?</label>
+                <br/>
+                <input type="radio" value="yes"/>Yes
+                <br/>
+                <input type="radio" value="no"/>No
+            </div>
             <br/>
+            <div>
+                <textarea>Put your note here.</textarea>
+            </div>
             <br/>
-            <button id="addnotebutton">Add Note</button>
-            
-        </fieldset>
+            <div>
+                <label for="study">What days this week should you study this material?</label>
+                <br/>
+                <input type="checkbox" name="study" value="Monday">Monday<br/>
+                <input type="checkbox" name="study" value="Tuesday">Tuesday<br/>
+                <input type="checkbox" name="study" value="Wednesday">Wednesday<br/>
+                <input type="checkbox" name="study" value="Thursday">Thursday<br/>
+                <input type="checkbox" name="study" value="Friday">Friday<br/>
+                <input type="checkbox" name="study" value="Saturday">Saturday<br/>
+                <input type="checkbox" name="study" value="Sunday">Sunday<br/>
+            </div>
+            <br/>
+            <div>
+                <label for="importance">How important is this note?</label>
+                <br/>
+                <input type="range" name="importance" min="1" max="10"/>
+            </div>
+            <br/>
+            <div>
+                <label for="password">Note Password:</label>
+                <br/>
+                <input type="password" name="pwd">
+            </div>
+            <br/>
+            <input type="submit" id="submitbutton"/>
+            </fieldset>
     </form>
     <br />
     <a href="#">Clear Notes</a>
