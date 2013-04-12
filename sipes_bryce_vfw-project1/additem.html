@@ -2,12 +2,41 @@
 
 <html>
 <head>
-    <title>Page Title</title>
+    <meta charset="utf-8"/>
+    <meta name="description" content="An easy to use application that allows you to store and keep track of important study information."/>
+    <meta name="keywords" content="Studying, Study App, Study Help, Study Buddy"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="viewport" content="user-scalable=yes, width=device-width"/>
+    <title>Study Buddy</title>
+    <!--<link href="css/styles.css" rel="stylesheet" type="text/css"/>
+    <script src="js/main.js" type="text/javascript"></script>-->
 </head>
-
+    
 <body>
-
-
-
+    <h1>Add Study Note</h1>
+    <form action="#" method="post">
+        <fieldset>
+            <legend><h2>Note</h2></legend>
+            <label for="class">Class:</label>
+            <select id="class">
+                <option>Math</option>
+                <option>Science</option>
+                <option>English</option>
+                <option>History</option>
+                <option>Art</option>
+                <option>Music</option>
+            </select>
+            <br/>
+            <br/>
+            <label for="teacher">Teacher:</label><input type="text" id="teacher"/>
+            <br/>
+            <br/>
+            <button id="addnotebutton">Add Note</button>
+            
+        </fieldset>
+    </form>
+    <br />
+    <a href="#">Clear Notes</a>
+    <a href="#">Show Notes</a>
 </body>
 </html>
