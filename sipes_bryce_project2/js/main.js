@@ -9,20 +9,42 @@ window.addEventListener("DOMContentLoaded", function(){
         return myElement;
     }
     
+    //find the selected radio button
+    var getTestValue = function(){
+        var radio = document.forms[0].test;
+        for(var i = 0; i < radio.length; i++){
+            if (radio[i].checked){    
+                testValue = radio[i].value;
+            }
+        }
+    };
+    
+    //get the checkbox values
+    var getStudyDays = function(){
+        var daysToStudy = document.form[0].study;
+        for (var i = 0; i < daysToStudy.length; i++){
+            if(daysToStudy[i].checked){
+                studyDaysValue += daysToStudy[i].value;
+            }
+        }
+    };
+    
     //save data function
-    var saveNotes = function(){
+    var saveNote = function(){
         var id = Math.floor(Math.random() * 1000000);
+        
         //Get all form data and store in object
         //object properties contain array with form label and input properties
         var note = {};
         note.date = ["Date: ", getElement("dates").value];
         note.classNote   = ["Class: ", getElement("class").value];
         note.teacher     = ["Teacher: ", getElement("teacher").value];
-        //note.test        = ["Will this be on a quiz: ", testValue];
+        note.test        = ["Will this be on a quiz: ", testValue];
         note.theNote     = ["Note: ", getElement("theNote").value];
-        //note.studyDays = ["Days this week you should study this material: ", studyDaysValue];
+        note.studyDays = ["Days this week you should study this material: ", studyDaysValue];
         note.importance  = ["How important this note is: ", getElement("importanceRange").value];
         note.password    = ["Password: ", getElement("password").value];
+        
         //save into local storage. use stringify to convert object to string.
         localStorage.setItem(id, JSON.stringify(note));
         alert("Your note has been saved.");
@@ -51,11 +73,13 @@ window.addEventListener("DOMContentLoaded", function(){
     };
     
     
-    var classes = ["-Choose A Class-", "Math", "Science", "Art", "Music", "English", "History"];
+    var classes = ["-Choose A Class-", "Math", "Science", "Art", "Music", "English", "History"],
+        testValue;
+    
     makeClasses();
     
     var saveData = getElement("submitButton");
-    saveData.addEventListener("click", saveNotes);
+    saveData.addEventListener("click", saveNote);
     
     var showData = getElement("showNotes");
     showData.addEventListener("click", showNotes);
