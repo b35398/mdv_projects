@@ -56,6 +56,11 @@ window.addEventListener("DOMContentLoaded", function(){
     //display data function. write data from local storage to browser.
     var showNotes = function(){
         toggleControls("on");
+        if (localStorage.length === 0){
+            alert("You don't have any notes saved.");
+            window.location.reload();
+            return false;
+        }
         var makeDiv = document.createElement("div");
         makeDiv.setAttribute("id","notes");
         var makeList = document.createElement("ul");
@@ -81,7 +86,16 @@ window.addEventListener("DOMContentLoaded", function(){
     };
     
     //clear data function
-    var clearNotes = function(){};
+    var clearNotes = function(){
+        if (localStorage.length === 0){
+            alert("There are no notes to clear.");
+        } else {
+            localStorage.clear();
+            alert("All notes have been cleared.");
+            window.location.reload();
+            return false;
+        }
+    };
     
     var toggleControls = function(n){
         switch(n){
