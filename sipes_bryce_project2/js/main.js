@@ -21,10 +21,12 @@ window.addEventListener("DOMContentLoaded", function(){
     
     //get the checkbox values
     var getStudyDays = function(){
-        var daysToStudy = document.form[0].study;
+        var daysToStudy = document.forms[0].study;
         for (var i = 0; i < daysToStudy.length; i++){
-            if(daysToStudy[i].checked){
-                studyDaysValue += daysToStudy[i].value;
+            if(daysToStudy[i].checked && studyDaysValue === undefined){
+                studyDaysValue = daysToStudy[i].value;
+            } else {
+                studyDaysValue + " " + daysToStudy[i].value + " ";
             }
         }
     };
@@ -32,11 +34,12 @@ window.addEventListener("DOMContentLoaded", function(){
     //save data function
     var saveNote = function(){
         var id = Math.floor(Math.random() * 1000000);
-        
+        getTestValue();
+        getStudyDays();
         //Get all form data and store in object
         //object properties contain array with form label and input properties
         var note = {};
-        note.date = ["Date: ", getElement("dates").value];
+        note.date = ["Date: ", getElement("date").value];
         note.classNote   = ["Class: ", getElement("class").value];
         note.teacher     = ["Teacher: ", getElement("teacher").value];
         note.test        = ["Will this be on a quiz: ", testValue];
@@ -50,11 +53,57 @@ window.addEventListener("DOMContentLoaded", function(){
         alert("Your note has been saved.");
     };
     
-    //display data function
-    var showNotes = function(){};
+    //display data function. write data from local storage to browser.
+    var showNotes = function(){
+        toggleControls("on");
+        var makeDiv = document.createElement("div");
+        makeDiv.setAttribute("id","notes");
+        var makeList = document.createElement("ul");
+        makeDiv.appendChild(makeList);
+        document.body.appendChild(makeDiv);
+        getElement("notes").style.display = "block";
+        for(var i = 0; i < localStorage.length; i++){
+            var makeLi = document.createElement("li");
+            makeList.appendChild(makeLi);
+            var key = localStorage.key(i);
+            var value = localStorage.getItem(key);
+            //convert the string from local storage value back to object
+            var obj = JSON.parse(value);
+            var makeSubList = document.createElement("ul");
+            makeLi.appendChild(makeSubList);
+            for (var n in obj){
+                var makeSubLi = document.createElement("li");
+                makeSubList.appendChild(makeSubLi);
+                var optSubText = obj[n][0] + " " + obj[n][1];
+                makeSubLi.innerHTML = optSubText;
+            }
+        }
+    };
     
     //clear data function
     var clearNotes = function(){};
+    
+    var toggleControls = function(n){
+        switch(n){
+            case "on":
+                getElement("noteForm").style.display = "none";
+                getElement("clearNotes").style.display = "inline";
+                getElement("showNotes").style.display = "none";
+                getElement("addNew").style.display = "inline";
+                break;
+            
+            case "off":
+                getElement("noteForm").style.display = "block";
+                getElement("clearNotes").style.display = "inline";
+                getElement("showNotes").style.display = "inline";
+                getElement("addNew").style.display = "none";
+                getElement("notes").style.display = "none";
+                break;
+            
+            default:
+                return false;
+        }
+    };
     
     //creates and populates a dropdown option menu
     var makeClasses = function(){
@@ -74,11 +123,12 @@ window.addEventListener("DOMContentLoaded", function(){
     
     
     var classes = ["-Choose A Class-", "Math", "Science", "Art", "Music", "English", "History"],
-        testValue;
+        testValue,
+        studyDaysValue;
     
     makeClasses();
     
-    var saveData = getElement("submitButton");
+    var saveData = getElement("noteSave");
     saveData.addEventListener("click", saveNote);
     
     var showData = getElement("showNotes");

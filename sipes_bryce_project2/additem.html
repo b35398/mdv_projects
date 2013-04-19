@@ -13,7 +13,7 @@
     
 <body>
     <h1>Add Study Note</h1>
-    <form action="#" method="post">
+    <form action="#" method="post" id="noteForm">
         <fieldset>
             <legend><h2>Note</h2></legend>
             <span>*required fields</span>
@@ -65,13 +65,14 @@
                 <input type="password" id="password">
             </div>
             <br/>
-            <input type="submit" id="submitButton"/>
+            <input type="submit" value="Save Note" id="noteSave"/>
             </fieldset>
     </form>
     <nav>
         <a href="#" id="clearNotes">Clear Notes</a>
         <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
-        <a href="#" id="showNotes">Show Notes</a>
+        <a href="#" value="Show Notes" id="showNotes">Show Notes</a>
+        <a href="additem.html" value="Add New Note" id="addNew" style="display:none">Add New Note</a>
     </nav>
     <script src="js/main.js" type="text/javascript"></script>
 </body>
