@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="description" content="An easy to use application that allows you to store and keep track of important study information."/>
+    <meta name="keywords" content="Studying, Study App, Study Help, Study Buddy"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="viewport" content="user-scalable=no, width=device-width"/>
+    <title>Study Buddy</title>
+    <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+</head>
+    
+<body>
+    <h1>Add Study Note</h1>
+    <form action="#" method="post" id="noteForm">
+        <fieldset>
+            <legend><h2>Note</h2></legend>
+            <span>*required fields</span>
+            <div>
+                <label for="date">*Date:<label/>
+                <input type="date" id="date"/>
+            </div>
+            <br/>
+            <div id="select">
+                <label for="classes">*Class:</label>
+            </div>
+            <br/>
+            <label for="teacher">Teacher:</label><input type="text" id="teacher"/>
+            <br/>
+            <br/>
+            <div>
+                <label for="test">*Will this be on a test or quiz?</label>
+                <br/>
+                <input type="radio" name="test" value="Yes"/>Yes
+                <br/>
+                <input type="radio" name="test" value="No"/>No
+            </div>
+            <br/>
+            <div>
+                <textarea id="theNote">*Put your note here.</textarea>
+            </div>
+            <br/>
+            <div>
+                <label for="study">What days this week should you study this material?</label>
+                <br/>
+                <input type="checkbox" name="study" value="Monday">Monday<br/>
+                <input type="checkbox" name="study" value="Tuesday">Tuesday<br/>
+                <input type="checkbox" name="study" value="Wednesday">Wednesday<br/>
+                <input type="checkbox" name="study" value="Thursday">Thursday<br/>
+                <input type="checkbox" name="study" value="Friday">Friday<br/>
+                <input type="checkbox" name="study" value="Saturday">Saturday<br/>
+                <input type="checkbox" name="study" value="Sunday">Sunday<br/>
+            </div>
+            <br/>
+            <div>
+                <label for="importance">How important is this note?</label>
+                <br/>
+                <input type="range" name="importance" id="importanceRange" min="1" max="10"/>
+            </div>
+            <br/>
+            <div>
+                <label for="password">*Note Password:</label>
+                <br/>
+                <input type="password" id="password">
+            </div>
+            <br/>
+            <input type="submit" value="Save Note" id="noteSave"/>
+            </fieldset>
+    </form>
+    <nav>
+        <a href="#" id="clearNotes">Clear Notes</a>
+        <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+        <a href="#" value="Show Notes" id="showNotes">Show Notes</a>
+        <a href="additem.html" value="Add New Note" id="addNew" style="display:none">Add New Note</a>
+    </nav>
+    <script src="js/main.js" type="text/javascript"></script>
+</body>
+</html>
