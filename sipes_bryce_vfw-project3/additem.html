@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+    
+<!--
+    Bryce Sipes
+    Project 3
+    4/25/13
+    VFW 1304
+-->
 
 <html>
 <head>
@@ -17,8 +24,9 @@
         <fieldset>
             <legend><h2>Note</h2></legend>
             <span>*required fields</span>
+            <ul id="errors"></ul>
             <div>
-                <label for="date">*Date:<label/>
+                <label for="date">Date:<label/>
                 <input type="date" id="date"/>
             </div>
             <br/>
@@ -30,7 +38,7 @@
             <br/>
             <br/>
             <div>
-                <label for="test">*Will this be on a test or quiz?</label>
+                <label for="test">Will this be on a test or quiz?</label>
                 <br/>
                 <input type="radio" name="test" value="Yes"/>Yes
                 <br/>
@@ -60,7 +68,7 @@
             </div>
             <br/>
             <div>
-                <label for="password">*Note Password:</label>
+                <label for="password">Note Password:</label>
                 <br/>
                 <input type="password" id="password">
             </div>
